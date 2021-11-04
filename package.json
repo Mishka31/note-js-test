@@ -1,0 +1,25 @@
+{
+  "name": "note-js-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mishka31/note-js-test.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "commander": "8.3.0",
+    "uniqid": "^5.4.0"
+  },
+  "bugs": {
+    "url": "https://github.com/Mishka31/note-js-test/issues"
+  },
+  "homepage": "https://github.com/Mishka31/note-js-test#readme"
+}
