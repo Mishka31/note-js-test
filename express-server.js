@@ -1,17 +1,34 @@
 
 const express = require('express')
 const morgan = require('morgan')
+const got = require('got');
 const app = express()
 const {router} = require("./Router")
-
 
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 app.use(express.static('public'))
 app.use(morgan('tiny'))
-app.use('/api', router)
+// app.use('/api', router)
 
-const PORT = 8081
+const PORT = process.env.PORT
+const baseURL = "http://api.weatherbit.io/v2.0/current/"
+
+app.get('/api/weather', async (req, res) => {
+    try {
+        const response = await got(baseURL, {searchParams: {
+            key: 'a051e2e64a6349b7894ac7206458567e',
+            lat: '50.09636106685113',
+            lon: '29.55367209692578',
+        },
+        responseType: 'json'
+    });
+        responseType: 'json'
+        res.json({response: response.body})
+    } catch (error) {
+        res.status(500).json({message: error.message})
+    }
+})
 
 // Custom Middleware
 // app.use((req, res, next) => {
@@ -22,11 +39,6 @@ const PORT = 8081
 // app.get('/home', (req, res) => {
     //     res.send('get request')
     // })
-    
-    app.post('/home', (req, res) => {
-        res.json({javascript: 'asdываываыasd',  body: req.body})
-    })
-
 // app.delete('/home', (req, res) => {
 //     res.send('delete reuest')
 // })
