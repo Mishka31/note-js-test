@@ -2,15 +2,16 @@
 const express = require('express')
 const morgan = require('morgan')
 const app = express()
- 
+const {router} = require("./Router")
+
+
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 app.use(express.static('public'))
 app.use(morgan('tiny'))
+app.use('/api', router)
 
 const PORT = 8081
-
-
 
 // Custom Middleware
 // app.use((req, res, next) => {
