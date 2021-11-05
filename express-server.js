@@ -11,13 +11,13 @@ app.use(express.static('public'))
 app.use(morgan('tiny'))
 // app.use('/api', router)
 
-const PORT = process.env.PORT
+const PORT = process.env.PORT || 8081
 const baseURL = "http://api.weatherbit.io/v2.0/current/"
 
 app.get('/api/weather', async (req, res) => {
     try {
         const response = await got(baseURL, {searchParams: {
-            key: 'a051e2e64a6349b7894ac7206458567e',
+            key: 'node',
             lat: '50.09636106685113',
             lon: '29.55367209692578',
         },
