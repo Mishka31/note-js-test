@@ -1,13 +1,14 @@
 const http = require('http')
-fs = require('fs');
+const fs = require('fs');
+const data = fs.readFileSync('./index.html', 'utf8')
 const PORT = 8081
 
 
 const requestHandler = (request, response) => {
-    fs.readFile('./index.html',function (err, data){
+
         response.writeHead(200, {'Content-Type': 'text/html'});
         response.end(data);
-    });
+
 }
 
 const server = http.createServer(requestHandler)
