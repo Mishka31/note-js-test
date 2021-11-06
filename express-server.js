@@ -4,31 +4,48 @@ const morgan = require('morgan')
 const got = require('got');
 const app = express()
 const {router} = require("./Router")
+require("dotenv").config()
+const e = process.env
 
-app.use(express.json())
-app.use(express.urlencoded({extended: true}))
-app.use(express.static('public'))
+// app.use(express.json())
+// app.use(express.urlencoded({extended: true}))
+// app.use(express.static('public'))
 app.use(morgan('tiny'))
+
 // app.use('/api', router)
 
-const PORT = process.env.PORT || 8081
+const PORT = e.PORT
 const baseURL = "http://api.weatherbit.io/v2.0/current/"
 
 app.get('/api/weather', async (req, res) => {
     try {
+
+        const {latitude, longitude} = req.query
+
+        if (!latitude) {
+           return res.status(400).json({message: "Latitude parameter is mandetory"})
+        }
+
+        if (!latitude) {
+           return res.status(400).json({message: "Latitude parameter is mandetory"})
+        }
+    
         const response = await got(baseURL, {searchParams: {
-            key: 'node',
-            lat: '50.09636106685113',
-            lon: '29.55367209692578',
+            key: e.API_KEY,
+            lat: latitude,
+            lon: longitude,
         },
         responseType: 'json'
     });
-        responseType: 'json'
-        res.json({response: response.body})
+
+        const [data] = response.body.data
+        const {temp, sunrise, weather: {description}, city_name} = data
+        res.json({ city_name, temp, description})
+
     } catch (error) {
         res.status(500).json({message: error.message})
     }
-})
+}) 
 
 // Custom Middleware
 // app.use((req, res, next) => {
