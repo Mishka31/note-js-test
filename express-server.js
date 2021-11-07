@@ -40,7 +40,7 @@ app.get('/api/weather', async (req, res) => {
 
         const [data] = response.body.data
         const {temp, sunrise, weather: {description}, city_name} = data
-        res.json({ city_name, temp, description})
+        res.json({ city_name, temp, description, sunrise})
 
     } catch (error) {
         res.status(500).json({message: error.message})
