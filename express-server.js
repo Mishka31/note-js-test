@@ -26,8 +26,8 @@ app.get('/api/weather', async (req, res) => {
            return res.status(400).json({message: "Latitude parameter is mandetory"})
         }
 
-        if (!latitude) {
-           return res.status(400).json({message: "Latitude parameter is mandetory"})
+        if (!longitude) {
+           return res.status(400).json({message: "Longitude parameter is mandetory"})
         }
     
         const response = await got(baseURL, {searchParams: {
