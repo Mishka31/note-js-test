@@ -18,7 +18,7 @@ app.use(cors())
 const PORT = e.PORT
 const baseURL = "http://api.weatherbit.io/v2.0/current/"
 
-app.get('/api/weather', async (req, res) => {
+app.get('api/weather', async (req, res) => {
     try {
 
         const {latitude, longitude} = req.query
