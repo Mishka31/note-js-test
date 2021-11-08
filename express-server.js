@@ -69,5 +69,5 @@ app.listen(PORT, (err) => {
     if (err) {
         console.error('Error at a server launch', err);
     }
-    console.log(`Server work at port ${PORT}`);
+    console.log(`Server work at ${PORT} port!`);
 })
