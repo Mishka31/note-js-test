@@ -24,11 +24,11 @@ app.get('/api/weather', async (req, res) => {
         const {latitude, longitude} = req.query
 
         if (!latitude) {
-           return res.status(400).json({message: "Latitude parameter is mandatory"})
+           return res.status(400).json({message: "Latitude parameter is mandatory-empty"})
         }
 
         if (!longitude) {
-           return res.status(400).json({message: "Longitude parameter is mandatory"})
+           return res.status(400).json({message: "Longitude parameter is mandatory-empty"})
         }
     
         const response = await got(baseURL, {searchParams: {
